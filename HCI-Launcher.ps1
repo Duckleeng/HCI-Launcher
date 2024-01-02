@@ -6,6 +6,11 @@ $affinity = $null
 
 ########################################################### CONFIG ###########################################################
 
+if(!(Test-Path -Path $memtest))
+{
+    Write-Error -Message "[ERROR] Invalid path" -ErrorAction Stop
+}
+
 if($null -eq $threads)
 {
     Write-Host "If you wish to skip this prompt, you can adjust the number of threads in the config section of the .ps1 file"
