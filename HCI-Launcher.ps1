@@ -35,7 +35,7 @@ $cores = (Get-WmiObject Win32_Processor).NumberOfLogicalProcessors
 
 if($null -eq $affinity)
 {
-    Write-Host "Running $threads threads across ALL cores..."
+    Write-Host "Running $threads threads across all cores..."
     for($i = 0; $i -lt $threads; $i++)
     {
         $aff = $i % $cores
