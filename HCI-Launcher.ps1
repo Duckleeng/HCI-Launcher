@@ -1,8 +1,11 @@
 ########################################################### CONFIG ###########################################################
+param(
 
-$memtest = "memtest.exe"
-$threads = $null
-$affinity = $null
+    [string]$memtest = "memtest.exe",
+    [int]$threads = $null,
+    [int[]]$affinity = $null
+
+)
 
 ########################################################### CONFIG ###########################################################
 
@@ -11,7 +14,7 @@ if(!(Test-Path -Path $memtest))
     Write-Error -Message "[ERROR] Invalid path" -ErrorAction Stop
 }
 
-if($null -eq $threads)
+if($threads -eq 0)
 {
     Write-Host "If you wish to skip this prompt, you can adjust the number of threads in the config section of the .ps1 file"
     Write-Host "Threads: " -NoNewline
