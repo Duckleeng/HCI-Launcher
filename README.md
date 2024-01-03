@@ -10,18 +10,21 @@ HCI MemTest is single threaded (aka. can only run on 1 logical core at a time). 
 
 Config parameters:
 
-- `$memtest` - specify the path of HCI memtest, by default it is assumed the test is located in the same directory as the script
+- `$path` - specify the path of HCI memtest, by default it is assumed the test is located in the same directory as the script
 
 - `$threads` - specify the number of instances (threads) of the test to run, ideally this should be your number of cores
 
 - `$affinity` - specify which cores to assign the threads to, each thread is assigned to 1 core
     - e.g. to set the threads to run on the first 8 cores, use the following syntax:
-        - `$affinity = 0,1,2,3,4,5,6,7`
+        - `[int[]]$affinity = (0,1,2,3,4,5,6,7)`
 
     - if there are more threads than specified cores, the affinities will loop
         - e.g. launching 8 threads with an affinity of `0,1,2` will launch 8 instances with these affinities: `0,1,2,0,1,2,0,1`
 
     - if no affinity is set, the threads will be spread across all cores
+
+Parameters can also be set when launching the script via command line arguments:<br>
+`.\HCI-Launcher.ps1 -Path "memtest.exe" -Threads 8 -Affinity 0,1,2,3,4,5,6,7`
 
 After all threads have launched, you will need to manually set the amount of memory for each thread, then start the test on each one
 
