@@ -1,7 +1,7 @@
 ########################################################### CONFIG ###########################################################
 param(
 
-    [string]$memtest = "memtest.exe",
+    [string]$path = "memtest.exe",
     [int]$threads = $null,
     [int[]]$affinity = $null
 
@@ -9,7 +9,7 @@ param(
 
 ########################################################### CONFIG ###########################################################
 
-if(!(Test-Path -Path $memtest))
+if(!(Test-Path -Path $path))
 {
     Write-Error -Message "[ERROR] Invalid path" -ErrorAction Stop
 }
@@ -42,7 +42,7 @@ if($null -eq $affinity)
     for($i = 0; $i -lt $threads; $i++)
     {
         $aff = $i % $cores
-        $p = Start-Process -FilePath $memtest -PassThru
+        $p = Start-Process -FilePath $path -PassThru
         $p.ProcessorAffinity = [int][Math]::Pow(2, $aff)
     }
 }else
@@ -66,7 +66,7 @@ if($null -eq $affinity)
     for($i = 0; $i -lt $threads; $i++)
     {
         $aff = $affinity[$i % $affinity.Count]
-        $p = Start-Process -FilePath $memtest -PassThru
+        $p = Start-Process -FilePath $path -PassThru
         $p.ProcessorAffinity = [int][Math]::Pow(2, $aff)
     }
 }
