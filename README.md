@@ -23,8 +23,10 @@ Config parameters:
 
     - if no affinity is set, the threads will be spread across all cores
 
-Parameters can also be set when launching the script via command line arguments:<br>
-`.\HCI-Launcher.ps1 -Path "memtest.exe" -Threads 8 -Affinity 0,1,2,3,4,5,6,7`
+Parameters can also be set when launching the script via command line arguments:
+```powershell
+.\HCI-Launcher.ps1 -Path "memtest.exe" -Threads 8 -Affinity 0,1,2,3,4,5,6,7
+```
 
 After all threads have launched, you will need to manually set the amount of memory for each thread, then start the test on each one
 
